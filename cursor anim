@@ -1,0 +1,57 @@
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  z-index: 2;
+  pointer-events: none;
+
+  div { /* Nested div for border and circle */
+    position: absolute;
+    display: grid;
+    place-items: center;
+
+    div { /* Inner circle with animation */
+      border: 1px solid #fff;
+      border-radius: 50%;
+      animation: pulse 2.5s linear infinite;
+      box-shadow: 0 0 50px 5px #d7abff6e;
+    }
+  }
+
+  div:nth-child(1), /* Applies to both nested divs */
+  div:nth-child(2) {
+    width: 100%; 
+    height: 100%;
+  }
+
+  div:nth-child(1) { /* Outer white border */
+    transition: transform 0.2s ease-out;
+  }
+
+  div:nth-child(2) { /* Inner white circle */
+    div {
+      background: #fff;
+      border-radius: 50%;
+      width: 4px;
+      height: 4px;
+    }
+    transition: transform 0.1s ease-out;
+  }
+}
+
+@keyframes pulse { /* Animation for inner circle */
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.25;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
